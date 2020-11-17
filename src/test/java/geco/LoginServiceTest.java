@@ -1,10 +1,8 @@
 package geco;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
@@ -13,10 +11,10 @@ import static org.junit.Assert.assertTrue;
 public class LoginServiceTest {
     private String testExist1, testExist2,testAdd;
     private LoginService log1;
-    private String[] loginExistant;
+
     @Before
     public void init() {
-        loginExistant = new String[] {"JeanCharle","test1"};
+        String[] loginExistant = new String[]{"JeanCharle", "test1"};
         testExist1 = "test1";
         testExist2 = "test2";
         testAdd = "ADDMe";
