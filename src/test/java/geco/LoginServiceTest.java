@@ -12,6 +12,7 @@ public class LoginServiceTest {
     private String testExist1, testExist2,testAdd;
     private LoginService log1;
 
+
     @Before
     public void init() {
         String[] loginExistant = new String[]{"JeanCharle", "test1"};
