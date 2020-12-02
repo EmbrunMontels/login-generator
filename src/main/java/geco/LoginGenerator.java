@@ -12,6 +12,7 @@ public class LoginGenerator {
 
     /**
      * Construit un login generator
+     *
      * @param loginService le service de login
      */
     public LoginGenerator(LoginService loginService) {
@@ -29,26 +30,35 @@ public class LoginGenerator {
      *     <li>Jacques Durand -> JDUR</li>
      *     <li>Lionel R&eacute;gal -> LREG</li>
      * </ul>
-     * @param nom le nom
+     *
+     * @param nom    le nom
      * @param prenom le prenom
      * @return le login genere
      */
     public String generateLoginForNomAndPrenom(String nom, String prenom) {
-        String p = deAccent(prenom.substring(0,1).toUpperCase());
-        String n = deAccent(nom.substring(0,3).toUpperCase());
-        String login = p+n ;
+        String p = deAccent(prenom.substring(0, 1).toUpperCase());
+        String n;
+        if (nom.length() > 3) {
+
+            n = deAccent(nom.substring(0, 3).toUpperCase());
+        } else {
+            n = deAccent(nom.substring(0, nom.length()).toUpperCase());
+        }
+
+        String login = p + n;
         if (loginService.loginExists(login)) {
-            int i=1;
-            while (testExist(i,login)){
+            int i = 1;
+            while (testExist(i, login)) {
                 i++;
             }
-            login = login + i ;
+            login = login + i;
         }
         loginService.addLogin(login);
         return login;
     }
-    private Boolean testExist(int i, String login){
-        return loginService.loginExists(login+i);
+
+    private Boolean testExist(int i, String login) {
+        return loginService.loginExists(login + i);
     }
 
     /**
@@ -62,10 +72,6 @@ public class LoginGenerator {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(nfdNormalizedString).replaceAll("");
     }
-
-
-
-
 
 
 }
